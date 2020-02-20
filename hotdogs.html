@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Flash Cards</title>
+	<style type="text/css">
+		html,body,input {font-size:30px;}
+	</style>
+	<script language="javascript">
+		function calculate()
+		{
+			hotdogs = parseInt(document.form1.hotdogs.value);
+			fries = parseInt(document.form1.fries.value);
+			drinks = parseInt(document.form1.drinks.value);
+			
+			if (!hotdogs) hotdogs = 0;
+			if (!fries) fries = 0;
+			if (!drinks) drinks = 0;
+
+			r = 3.25*hotdogs + 2*fries + 1.5*drinks;
+
+			document.getElementById("subtotal").value = "$" + r.toFixed(2);
+
+			if (r >= 20)    //discount
+			{ 
+				d = 0.1 * r
+				r -= d;
+				document.getElementById("discount").value = "$" + d.toFixed(2);
+			}
+			else 
+			{
+				document.getElementById("discount").value = "None";
+			}
+
+			t = r * 0.0625    //tax
+			r += t
+
+			document.getElementById("tax").value = "$" + t.toFixed(2);
+			
+			document.getElementById("total").value = "$" + r.toFixed(2);
+		}
+	</script>
+</head>
+<body>	
+	<h1>Welcome to Joe's Hotdog Stand!</h1>
+	What quantities do you want to order?
+	<form name="form1">
+		Hotdogs <input type="text" name="hotdogs" id="hotdogs"><br />
+		Fries <input type="text" name="fries" id="fries"><br />
+		Drinks <input type="text" name="drinks" id="drinks">
+		<hr />
+		<!-- Hotdogs ordered <input type="text" name="hotdogs" id="hotdogs"><br />
+		Fries ordered <input type="text" name="fries" id="fries"><br />
+		Drinks ordered <input type="text" name="drinks" id="drinks"><br /> -->
+		Subtotal <input type="text" name="subtotal" id="subtotal"><br />
+		Discount <input type="text" name="discount" id="discount"><br />
+		Tax <input type="text" name="tax" id="tax"><br />
+		Total <input type="text" name="total" id="total">
+		
+		<br /><br />
+		<input type="button" value = "Calculate" 
+			   onclick ="calculate()">
+	</form>
+</body>
+</html>
+
+
+
+
